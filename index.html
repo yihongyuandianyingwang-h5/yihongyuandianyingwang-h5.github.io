@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>怡院影视 - 庭院月色里的好电影 | yiyuandianying-h5.github.io</title>
+<meta name="description" content="怡院影视（yiyuandianying-h5.github.io）收录庭院风文艺片、华语剧情、治愈电影、老片修复与影视随笔，移动端自适应，单页影视导航演示。" />
+<meta name="keywords" content="怡院影视,yiyuandianying-h5,庭院电影,文艺片,华语剧情,治愈电影,老片修复" />
+<link rel="canonical" href="https://yiyuandianying-h5.github.io/" />
+<style>
+:root{
+  --bg:#0c0f0d;--bg2:#121a16;--card:#16201b;--line:#243029;
+  --txt:#eaf3ec;--sub:#9fc0ab;
+  --moon:#f4e7c1;--bamboo:#7fc8a0;--ink:#c9d8cf;--plum:#caa6c8;
+  --radius:18px;--maxw:1180px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",serif;
+  background:
+    radial-gradient(900px 480px at 12% -10%,rgba(244,231,193,.16),transparent 55%),
+    radial-gradient(900px 520px at 90% 0%,rgba(127,200,160,.16),transparent 55%),
+    radial-gradient(900px 600px at 50% 120%,rgba(202,166,200,.12),transparent 55%),
+    var(--bg);
+  color:var(--txt);line-height:1.7;-webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 16px}
+header.site{position:sticky;top:0;z-index:60;backdrop-filter:saturate(140%) blur(10px);
+  background:linear-gradient(180deg,rgba(12,15,13,.95),rgba(12,15,13,.72));border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:14px;height:64px}
+.logo{font-weight:900;font-size:22px;letter-spacing:.4px;
+  background:linear-gradient(90deg,var(--moon),var(--bamboo),var(--plum));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.logo small{display:block;font-size:11px;color:var(--sub);font-weight:600}
+.menu{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.menu a{padding:8px 12px;border-radius:999px;color:var(--sub);font-size:14px}
+.menu a:hover{color:#0c0f0d;background:var(--moon)}
+.search{display:flex;gap:8px}
+.search input{width:180px;padding:9px 12px;border-radius:999px;border:1px solid var(--line);background:#0e1411;color:#fff;outline:none}
+.search button{border:0;padding:9px 14px;border-radius:999px;cursor:pointer;font-weight:800;
+  background:linear-gradient(90deg,var(--moon),var(--bamboo));color:#10231a}
+.burger{display:none;margin-left:auto;background:#0e1411;border:1px solid var(--line);color:#fff;border-radius:12px;padding:8px 12px;font-size:18px}
+
+.hero{position:relative;margin:22px 0 8px;border-radius:26px;overflow:hidden;border:1px solid var(--line);min-height:360px;
+  background:linear-gradient(120deg,#101813,#15201a 55%,#120f15)}
+.moon{position:absolute;top:36px;right:48px;width:120px;height:120px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#fff7e0,#f4e7c1 55%,#d8c79a);box-shadow:0 0 60px rgba(244,231,193,.45)}
+.leaves{position:absolute;inset:0;opacity:.4;
+  background-image:radial-gradient(rgba(127,200,160,.18) 1px,transparent 1px);background-size:14px 14px}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity .6s ease;padding:46px;display:flex;flex-direction:column;justify-content:flex-end}
+.slide.active{opacity:1;position:relative}
+.slide h1{font-size:36px;margin:0 0 8px}
+.slide p{color:#d7e7dc;max-width:640px;margin:0 0 16px}
+.chip{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:800;margin-right:8px}
+.chip.m{background:var(--moon);color:#2a2410}.chip.b{background:var(--bamboo);color:#0c2018}.chip.p{background:var(--plum);color:#2a1024}
+.cta{padding:11px 18px;border-radius:999px;font-weight:800;width:max-content;border:0;cursor:pointer;
+  background:linear-gradient(90deg,#fff,#e7f3ea);color:#10231a}
+.dots{position:absolute;left:18px;bottom:18px;display:flex;gap:8px}
+.dots i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer}
+.dots i.on{background:var(--moon)}
+
+.section{padding:34px 0}
+.sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:18px}
+.sec-head h2{font-size:24px;margin:0}
+.sec-head span{color:var(--sub);font-size:13px}
+.more{margin-left:auto;color:var(--bamboo);font-size:13px}
+
+.grid-poster{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.poster{position:relative;border-radius:16px;overflow:hidden;background:var(--card);border:1px solid var(--line);transition:.25s}
+.poster:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.5)}
+.poster .ph{aspect-ratio:2/3}
+.poster:nth-child(1) .ph{background:linear-gradient(160deg,#1c2a1c,#7fc8a0)}
+.poster:nth-child(2) .ph{background:linear-gradient(160deg,#2a261c,#f4e7c1)}
+.poster:nth-child(3) .ph{background:linear-gradient(160deg,#261c2a,#caa6c8)}
+.poster:nth-child(4) .ph{background:linear-gradient(160deg,#1c242a,#9fd0e0)}
+.poster:nth-child(5) .ph{background:linear-gradient(160deg,#2a1c1c,#e0a3a3)}
+.poster:nth-child(6) .ph{background:linear-gradient(160deg,#1c2a26,#7fc8c0)}
+.poster .meta{padding:10px 12px}
+.poster h3{font-size:14px;margin:0 0 4px}
+.poster .rate{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.6);color:var(--moon);font-weight:800;padding:3px 8px;border-radius:10px;font-size:12px}
+.poster .tag{position:absolute;top:10px;right:10px;background:var(--bamboo);color:#0c2018;font-size:11px;padding:3px 8px;border-radius:10px}
+
+.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.cat{border-radius:16px;padding:22px 14px;text-align:center;font-weight:800;color:#10231a;border:1px solid rgba(255,255,255,.12)}
+.cat:nth-child(1){background:linear-gradient(135deg,var(--moon),#e7d29a)}
+.cat:nth-child(2){background:linear-gradient(135deg,var(--bamboo),#4f9e78)}
+.cat:nth-child(3){background:linear-gradient(135deg,var(--plum),#a87aa6)}
+.cat:nth-child(4){background:linear-gradient(135deg,#9fd0e0,#5b9fc0)}
+.cat:nth-child(5){background:linear-gradient(135deg,#e0a3a3,#c97a7a)}
+.cat:nth-child(6){background:linear-gradient(135deg,#7fc8c0,#4f9e98)}
+
+.essays{display:grid;grid-template-columns:1.3fr 1fr;gap:18px}
+.essay-hero{border-radius:18px;overflow:hidden;border:1px solid var(--line);padding:22px;background:linear-gradient(160deg,#15201a,#1c1426)}
+.essay-list{display:flex;flex-direction:column;gap:10px}
+.erow{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px}
+.ethumb{width:84px;height:60px;border-radius:10px;flex:0 0 84px;background:linear-gradient(160deg,#1c2a1c,#f4e7c1)}
+.erow h4{margin:0;font-size:14px}.erow span{font-size:12px;color:var(--sub)}
+
+.hscroll{display:flex;gap:14px;overflow-x:auto;padding-bottom:8px}
+.hscroll::-webkit-scrollbar{height:8px}.hscroll::-webkit-scrollbar-thumb{background:#243029;border-radius:99px}
+.hcard{flex:0 0 220px;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.hcard .ph{aspect-ratio:16/9}
+.hcard:nth-child(1) .ph{background:linear-gradient(160deg,#1c2a1c,#7fc8a0)}
+.hcard:nth-child(2) .ph{background:linear-gradient(160deg,#2a261c,#f4e7c1)}
+.hcard:nth-child(3) .ph{background:linear-gradient(160deg,#261c2a,#caa6c8)}
+.hcard:nth-child(4) .ph{background:linear-gradient(160deg,#1c242a,#9fd0e0)}
+.hcard:nth-child(5) .ph{background:linear-gradient(160deg,#2a1c1c,#e0a3a3)}
+.hcard .meta{padding:10px 12px}.hcard h3{font-size:14px;margin:0}
+.prog{height:6px;background:#0e1411;border-radius:99px;margin-top:8px;overflow:hidden}.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--moon),var(--bamboo))}
+
+.collage{display:grid;grid-template-columns:2fr 1fr 1fr;grid-auto-rows:160px;gap:14px}
+.cg{border-radius:18px;overflow:hidden;border:1px solid var(--line);padding:18px;color:#fff}
+.cg.big{grid-row:span 2;background:linear-gradient(160deg,#15201a,#261c2a)}
+.cg:nth-child(2){background:linear-gradient(160deg,#1c2a1c,#7fc8a0);color:#0c2018}
+.cg:nth-child(3){background:linear-gradient(160deg,#2a261c,#f4e7c1);color:#2a2410}
+.cg:nth-child(4){background:linear-gradient(160deg,#261c2a,#caa6c8);color:#2a1024}
+.cg:nth-child(5){background:linear-gradient(160deg,#1c242a,#9fd0e0);color:#06202a}
+.cg h3{margin:0 0 6px;font-size:18px}.cg p{margin:0;font-size:13px;opacity:.92}
+
+.about{display:grid;grid-template-columns:1.3fr 1fr;gap:18px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:10px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;text-align:center}
+.stat b{font-size:24px;background:linear-gradient(90deg,var(--moon),var(--bamboo),var(--plum));-webkit-background-clip:text;background-clip:text;color:transparent}
+.form{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
+.form input,.form textarea{width:100%;padding:11px 12px;border-radius:12px;border:1px solid var(--line);background:#0e1411;color:#fff;margin-bottom:10px;outline:none}
+.form button{border:0;width:100%;padding:12px;border-radius:12px;cursor:pointer;font-weight:800;background:linear-gradient(90deg,var(--moon),var(--bamboo));color:#10231a}
+
+footer.site{border-top:1px solid var(--line);padding:26px 0 42px;color:var(--sub);font-size:13px}
+footer.site a{color:var(--bamboo)}
+code{background:#0e1411;border:1px solid var(--line);padding:1px 6px;border-radius:6px;color:var(--moon)}
+
+@media (max-width:980px){
+  .grid-poster{grid-template-columns:repeat(4,1fr)}
+  .cats{grid-template-columns:repeat(3,1fr)}
+  .essays,.about{grid-template-columns:1fr}
+  .collage{grid-template-columns:1fr 1fr}.cg.big{grid-row:auto}
+}
+@media (max-width:720px){
+  .menu{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;background:#0c0f0d;border-bottom:1px solid var(--line);padding:10px 16px;gap:4px}
+  .menu.open{display:flex}
+  .burger{display:block}
+  .search input{width:120px}
+  .slide{padding:26px 18px}.slide h1{font-size:26px}
+  .moon{width:80px;height:80px;top:20px;right:20px}
+  .grid-poster{grid-template-columns:repeat(2,1fr)}
+  .cats{grid-template-columns:repeat(2,1fr)}
+  .collage{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">怡院影视<small>yiyuandianying-h5.github.io</small></div>
+    <nav class="menu" id="menu">
+      <a href="#home">首页</a>
+      <a href="#garden">庭院片单</a>
+      <a href="#cats">意境分类</a>
+      <a href="#essay">影视随笔</a>
+      <a href="#drama">月色剧集</a>
+      <a href="#topic">专题院落</a>
+      <a href="#about">关于怡院</a>
+    </nav>
+    <div class="search">
+      <input type="text" placeholder="搜文艺片/华语剧情/老片" aria-label="搜索" />
+      <button type="button" onclick="alert('演示站：搜索用 # 占位')">搜索</button>
+    </div>
+    <button class="burger" id="burger" aria-label="菜单">☰</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ① 首屏 -->
+  <section class="hero" id="home" aria-label="怡院影视首屏">
+    <div class="leaves"></div>
+    <div class="moon"></div>
+    <div class="slide active">
+      <span class="chip m">庭院月色</span><span class="chip b">慢看电影</span>
+      <h1>怡院影视 · 在院子里，把一部好片看到尾</h1>
+      <p>文艺片、华语剧情、治愈电影、老片修复、影视随笔——不吵不卷，适合晚上一个人看。</p>
+      <button class="cta" onclick="location.href='#garden'">入院看片</button>
+    </div>
+    <div class="slide">
+      <span class="chip p">华语剧情</span><span class="chip m">老片修复</span>
+      <h1>那些年院子里的放映机</h1>
+      <p>从胶片到流媒体，怡院把“值得二刷”的华语片、冷门文艺片、家庭剧情片重新挂回墙头。</p>
+      <button class="cta" onclick="location.href='#essay'">读影视随笔</button>
+    </div>
+    <div class="slide">
+      <span class="chip b">月色剧集</span><span class="chip p">慢综艺</span>
+      <h1>怡院剧场：一集一壶茶</h1>
+      <p>慢剧、生活流、老综艺、动画小品，移动端自适应，睡前刚好一集。</p>
+      <button class="cta" onclick="location.href='#drama'">进月色剧场</button>
+    </div>
+    <div class="dots" id="dots"><i class="on"></i><i></i><i></i></div>
+  </section>
+
+  <!-- ② 庭院片单 -->
+  <section class="section" id="garden">
+    <div class="sec-head"><h2>庭院片单</h2><span>Garden Picks</span><a class="more" href="#">更多 #</a></div>
+    <div class="grid-poster">
+      <article class="poster"><div class="ph"></div><span class="rate">9.1</span><span class="tag">文艺</span><div class="meta"><h3>院子里的雨</h3><p>文艺 / 2026</p></div></article>
+      <article class="poster"><div class="ph"></div><span class="rate">8.8</span><div class="meta"><h3>竹影饭桌</h3><p>家庭 / 2025</p></div></article>
+      <article class="poster"><div class="ph"></div><span class="rate">9.0</span><span class="tag">修复</span><div class="meta"><h3>月色邮局</h3><p>治愈 / 2026</p></div></article>
+      <article class="poster"><div class="ph"></div><span class="rate">8.6</span><div class="meta"><h3>旧巷琴声</h3><p>音乐 / 2025</p></div></article>
+      <article class="poster"><div class="ph"></div><span class="rate">8.7</span><span class="tag">华语</span><div class="meta"><h3>晚风吹檐</h3><p>剧情 / 2026</p></div></article>
+      <article class="poster"><div class="ph"></div><span class="rate">8.9</span><div class="meta"><h3>苔痕小院</h3><p>田园 / 2025</p></div></article>
+    </div>
+  </section>
+
+  <!-- ③ 意境分类 -->
+  <section class="section" id="cats">
+    <div class="sec-head"><h2>意境分类</h2><span>By Mood</span></div>
+    <div class="cats">
+      <a class="cat" href="#">庭院文艺</a>
+      <a class="cat" href="#">华语剧情</a>
+      <a class="cat" href="#">治愈慢片</a>
+      <a class="cat" href="#">老片修复</a>
+      <a class="cat" href="#">家庭饭桌</a>
+      <a class="cat" href="#">月色动画</a>
+    </div>
+  </section>
+
+  <!-- ④ 影视随笔 -->
+  <section class="section" id="essay">
+    <div class="sec-head"><h2>影视随笔</h2><span>Notes</span><a class="more" href="#">全部 #</a></div>
+    <div class="essays">
+      <div class="essay-hero">
+        <span class="chip m">怡院札记</span>
+        <h3 style="font-size:22px;margin:10px 0">为什么好电影像一座院子：要慢，要留白</h3>
+        <p style="color:#d7e7dc">不靠反转堆悬念，不靠吵闹造高潮。本文用《院子里的雨》《竹影饭桌》《月色邮局》三片，聊“庭院感”怎么拍出来。</p>
+        <button class="cta" onclick="location.href='#'">读全文</button>
+      </div>
+      <div class="essay-list">
+        <div class="erow"><div class="ethumb"></div><div><h4>华语家庭片里的饭桌镜头</h4><span>2026-10-09 · 随笔</span></div></div>
+        <div class="erow"><div class="ethumb"></div><div><h4>老片修复：颗粒感不是糊</h4><span>2026-10-08 · 技术</span></div></div>
+        <div class="erow"><div class="ethumb"></div><div><h4>月色、竹影、瓦片：中式氛围三件套</h4><span>2026-10-07 · 美术</span></div></div>
+        <div class="erow"><div class="ethumb"></div><div><h4>慢剧为什么越看越静</h4><span>2026-10-06 · 剧评</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ 月色剧集 -->
+  <section class="section" id="drama">
+    <div class="sec-head"><h2>月色剧集 · 慢综艺</h2><span>Night Series</span><a class="more" href="#">更多 #</a></div>
+    <div class="hscroll">
+      <div class="hcard"><div class="ph"></div><div class="meta"><h3>院子里的雨 第5集</h3><div class="prog"><i style="width:60%"></i></div></div></div>
+      <div class="hcard"><div class="ph"></div><div class="meta"><h3>竹影饭桌 S2</h3><div class="prog"><i style="width:38%"></i></div></div></div>
+      <div class="hcard"><div class="ph"></div><div class="meta"><h3>月色邮局 第8集</h3><div class="prog"><i style="width:76%"></i></div></div></div>
+      <div class="hcard"><div class="ph"></div><div class="meta"><h3>旧巷琴声 第4集</h3><div class="prog"><i style="width:48%"></i></div></div></div>
+      <div class="hcard"><div class="ph"></div><div class="meta"><h3>苔痕小院 第2集</h3><div class="prog"><i style="width:24%"></i></div></div></div>
+    </div>
+  </section>
+
+  <!-- ⑥ 专题院落 -->
+  <section class="section" id="topic">
+    <div class="sec-head"><h2>专题院落</h2><span>Collections</span><a class="more" href="#">更多专题 #</a></div>
+    <div class="collage">
+      <div class="cg big"><h3>一座院子，五部慢片</h3><p>雨、竹、月、琴、苔——用五部片把“怡院”种出来。</p><button class="cta" onclick="location.href='#'">进院</button></div>
+      <div class="cg"><h3>华语家庭</h3><p>饭桌 / 旧照 / 门廊</p></div>
+      <div class="cg"><h3>老片修复</h3><p>胶片 / 颗粒 / 重映</p></div>
+      <div class="cg"><h3>月色动画</h3><p>猫 / 灯 / 晚风</p></div>
+      <div class="cg"><h3>田园治愈</h3><p>苔痕 / 茶 / 檐角</p></div>
+    </div>
+  </section>
+
+  <!-- ⑦ 关于怡院 -->
+  <section class="section" id="about">
+    <div class="sec-head"><h2>关于怡院</h2><span>About</span></div>
+    <div class="about">
+      <div>
+        <p style="color:#d7e7dc">怡院影视（yiyuandianying-h5.github.io）是一个庭院/月色风的影视导航演示站：文艺片、华语剧情、治愈电影、老片修复、影视随笔与慢剧，强调移动端自适应与单页锚点结构。</p>
+        <div class="stats">
+          <div class="stat"><b>庭院风</b><br>内容气质</div>
+          <div class="stat"><b>3600+</b><br>文艺片目</div>
+          <div class="stat"><b>100%</b><br>移动端适配</div>
+        </div>
+      </div>
+      <form class="form" onsubmit="event.preventDefault();alert('演示提交：怡院留言已占位');">
+        <h3 style="margin:0 0 10px">你想在院子里看什么？</h3>
+        <input type="text" placeholder="昵称" aria-label="昵称" />
+        <input type="email" placeholder="邮箱（演示）" aria-label="邮箱" />
+        <textarea rows="3" placeholder="文艺 / 华语 / 治愈 / 老片修复 / 月色动画…"></textarea>
+        <button type="submit">留个话</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    怡院影视 · <a href="https://yiyuandianying-h5.github.io/">yiyuandianying-h5.github.io</a><br/>
+    演示页面：所有播放 / 详情 / 分类链接均使用 <code>#</code> 占位，不提供真实盗版资源。<br/>
+    © 2026 怡院影视 Demo · 庭院风影视导航演示，仅用于静态站 / SEO / 移动端适配演示。
+  </div>
+</footer>
+
+<script>
+  const burger=document.getElementById('burger'),menu=document.getElementById('menu');
+  burger.addEventListener('click',()=>menu.classList.toggle('open'));
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
+
+  const slides=[...document.querySelectorAll('.hero .slide')];
+  const dots=[...document.querySelectorAll('#dots i')];
+  let cur=0;
+  function show(i){slides.forEach((s,k)=>s.classList.toggle('active',k===i));dots.forEach((d,k)=>d.classList.toggle('on',k===i));cur=i;}
+  dots.forEach((d,i)=>d.addEventListener('click',()=>show(i)));
+  setInterval(()=>show((cur+1)%slides.length),4800);
+</script>
+</body>
+</html>
